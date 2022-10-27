@@ -59,6 +59,18 @@ const App = () => {
       if(newName === "" || newNumber === "") {
         alert("One of the fields is empty, please check")
       }
+      else if(newName.length < 3) {
+        setNotification(`Name ${newName} should be atleast 3 characters`)
+        setTimeout(() => {
+          setNotification(null)
+        }, 5000)
+      }
+      else if(Number.isInteger(newNumber) === false) {
+        setNotification(`Name should be an integer`)
+        setTimeout(() => {
+          setNotification(null)
+        }, 5000)
+      }
       else {
         const obj = {name: newName, number: newNumber}
         contactServices

@@ -109,7 +109,7 @@ color: #000000;
 }
 
 .phonebook {
-  /* Phonebook */
+  /* Phonebook
 
 
 width: 113px;
@@ -128,5 +128,5 @@ color: #000000;
 
 flex: none;
 order: 0;
-flex-grow: 0;
+flex-grow: 0; */
 }

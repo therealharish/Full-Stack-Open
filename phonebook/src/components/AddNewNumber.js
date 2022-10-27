@@ -4,7 +4,7 @@ const AddNewNumber = (props) => {
         <h2 >Add a new</h2>
             <form onSubmit = {props.handleFormSubmit}>
                 <div>
-                    name: 
+                name: 
                     <input
                         value = {props.newName}
                         onChange = {props.handleNewNameAdd} 
