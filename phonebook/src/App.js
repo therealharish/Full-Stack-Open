@@ -4,7 +4,11 @@ import Filter from './components/Filter'
 import Notification from './components/Notification'
 import PersonsToShow from './components/PersonsToShow'
 import contactServices from './services/contactServices'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
 import './App.css';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 const App = () => {
   const [persons, setPersons] = useState([])
@@ -31,6 +35,9 @@ const App = () => {
       return false
     }
   }
+
+  const isDigitsOnly = string => [...string].every(c => '0123456789-'.includes(c));
+
 
   const handleFormSubmit = (event) => {
     event.preventDefault()
@@ -65,8 +72,14 @@ const App = () => {
           setNotification(null)
         }, 5000)
       }
-      else if(Number.isInteger(newNumber) === false) {
-        setNotification(`Name should be an integer`)
+      else if(isDigitsOnly(newNumber) === false) {
+        setNotification(`Number should be an integer`)
+        setTimeout(() => {
+          setNotification(null)
+        }, 5000)
+      }
+      else if(newNumber.length < 8) {
+        setNotification(`Number should be atleast 8 characters long`)
         setTimeout(() => {
           setNotification(null)
         }, 5000)
@@ -116,9 +129,13 @@ const App = () => {
 
   if(persons){
     return (
-    <div className = 'desktop-1'>
+    <Container className = "p-5">
+    <div className = "base">
+    <div className = 'desktop'>
       <div className = "frame-1">
-        <h2 className = "phonebook">Phonebook</h2>
+        <Row >
+        <h2 className = "phonebook row-md-3">Phonebook</h2>
+        </Row>
         <Notification message = {notification}/>
         <Filter filter = {filter} handleFilterChange = {handleFilterChange} />
         <AddNewNumber 
@@ -139,6 +156,8 @@ const App = () => {
         />
       </div>
     </div>
+    </div>
+    </Container>
   )}
   else {
     return (
